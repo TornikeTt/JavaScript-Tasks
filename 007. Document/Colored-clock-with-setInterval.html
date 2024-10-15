@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style></style>
+    </head>
+    <body>
+        <p>HH:MM:SS</p>
+        <!-- click on this button calls clockStart() -->
+        <input type="button" onclick="clockStart()" value="Start" />
+
+        <!-- click on this button calls clockStop() -->
+        <input type="button" onclick="clockStop()" value="Stop" />
+
+        <script>
+            let text = document.getElementsByTagName("p")[0];
+
+            function getCurrentTime() {
+                let date = new Date(); // Get the current date and time
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let seconds = date.getSeconds();
+
+                // Format hours, minutes, and seconds to always have two digits
+                hours = hours < 10 ? "0" + hours : hours;
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                return `${hours}:${minutes}:${seconds}`;
+            }
+
+            let timer;
+
+            // Function to start the clock and update every second
+            function clockStart() {
+                timer = setInterval(() => {
+                    text.innerText = getCurrentTime(); // Update the displayed time
+                }, 1000); // Update every 1 second (1000ms)
+            }
+
+            function clockStop() {
+                clearInterval(timer);
+            }
+        </script>
+    </body>
+</html>
